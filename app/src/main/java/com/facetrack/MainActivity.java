@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
     }
 
     private void showtoast() {
-        
+
     }
 
     private void init() {
