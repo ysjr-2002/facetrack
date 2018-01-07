@@ -30,13 +30,10 @@ public class MainActivity extends Activity {
 
     private void init() {
 
-//        facepp = new Facepp();
-//        facepp.init(MainActivity.this, null, 1);
-
         byte[] model = ConUtil.getFileContent(this, R.raw.megviifacepp_0_5_2_model);
         int type = Facepp.getSDKAuthType(model);
         if (type == 2) {//本地授权
-
+            showtoast("本地授权成功");
             return;
         }
 
@@ -49,35 +46,36 @@ public class MainActivity extends Activity {
 
         licenseManager.setAuthTimeBufferMillis(0);
 
-        licenseManager.takeLicenseFromNetwork(uuid, Util.API_KEY, Util.API_SECRET, apiName,
-                LicenseManager.DURATION_30DAYS, "Landmark", "1", true, new LicenseManager.TakeLicenseCallback() {
-                    @Override
-                    public void onSuccess() {
-                        authState(true,0,"");
-                    }
-
-                    @Override
-                    public void onFailed(int i, byte[] bytes) {
-                        if (TextUtils.isEmpty(Util.API_KEY)||TextUtils.isEmpty(Util.API_SECRET)) {
-                            if (!ConUtil.isReadKey(MainActivity.this)) {
-                                authState(false,1001,"");
-                            }else{
-                                authState(false,1001,"");
-                            }
-                        }else{
-                            String msg="";
-                            if (bytes!=null&&bytes.length>0){
-                                msg=  new String(bytes);
-                            }
-                            authState(false,i,msg);
-                        }
-                    }
-                });
+//        licenseManager.takeLicenseFromNetwork(uuid, Util.API_KEY, Util.API_SECRET, apiName,
+//                LicenseManager.DURATION_30DAYS, "Landmark", "1", true, new LicenseManager.TakeLicenseCallback() {
+//                    @Override
+//                    public void onSuccess() {
+//                        authState(true,0,"");
+//                    }
+//
+//                    @Override
+//                    public void onFailed(int i, byte[] bytes) {
+//                        if (TextUtils.isEmpty(Util.API_KEY)||TextUtils.isEmpty(Util.API_SECRET)) {
+//                            if (!ConUtil.isReadKey(MainActivity.this)) {
+//                                authState(false,1001,"");
+//                            }else{
+//                                authState(false,1001,"");
+//                            }
+//                        }else{
+//                            String msg="";
+//                            if (bytes!=null&&bytes.length>0){
+//                                msg=  new String(bytes);
+//                            }
+//                            authState(false,i,msg);
+//                        }
+//                    }
+//                });
+        authState(false,0,"");
     }
 
     private void authState(boolean isSuccess,int code,String msg)
     {
-        if (isSuccess) {
+        if (isSuccess ==false) {
 
             Intent intent = new Intent();
             intent.setClass(this, FaceppActionActivity.class);

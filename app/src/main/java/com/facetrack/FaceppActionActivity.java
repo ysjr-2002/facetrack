@@ -390,7 +390,9 @@ public class FaceppActionActivity extends Activity implements View.OnClickListen
             faceActionInfo.trackModel = editItemTexts[4].getText().toString().trim();
             faceActionInfo.isFaceCompare = isFaceCompare;
 
-            //startActivityForResult(new Intent(FaceppActionActivity.this, OpenglActivity.class).putExtra("FaceAction", faceActionInfo),101);
+            Intent intent = new Intent(FaceppActionActivity.this, OpenglActivity.class);
+            intent.putExtra("FaceAction", faceActionInfo);
+            startActivityForResult(intent,101);
         }
     }
 
