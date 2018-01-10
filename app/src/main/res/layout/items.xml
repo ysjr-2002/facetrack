@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--item -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:minHeight="36dp"
+    android:layout_height="48dp">
+    <!-- 名称 -->
+    <TextView
+        android:layout_width="130dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:layout_height="match_parent"
+        android:id="@+id/id"
+        />
+    <!-- 电话 -->
+    <TextView
+        android:layout_width="150dp"
+        android:gravity="left|center_vertical"
+        android:layout_height="match_parent"
+        android:id="@+id/name"
+        />
+</LinearLayout>
